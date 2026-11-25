@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="mast-inner">
+    <p class="kicker">Token Launch Radar &middot; model <span id="mver">signal-2</span></p>
+    <h1>Protocols that run without a token, ranked by what a launch could be worth</h1>
+    <p class="lede">One sealed DefiLlama snapshot (<span id="asof">2026-11-14</span>) holds 758 protocols.
+    The 342 that record no token are launch candidates: this radar prices each one from the snapshot's
+    own numbers — TVL, 7-day momentum, chain breadth, age and sector — and writes the farm plan for
+    earning a place in its launch. The 416 that already record a token are kept apart, at the market's
+    own values, under <em>Already trading</em>. The snapshot's 40-protocol watchlist is the floor of
+    the coverage, never the ceiling: every candidate is ranked.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Views">
+  <button class="tab on" data-view="board" type="button">Radar board</button>
+  <button class="tab" data-view="live" type="button">Already trading</button>
+  <button class="tab" data-view="model" type="button">How the model works</button>
+</nav>
+<main>
+  <section id="view-board">
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search name, slug or chain" aria-label="Search">
+      <select id="cat" aria-label="Category"></select>
+      <label class="check"><input id="watch" type="checkbox"> Watchlist only (40)</label>
+      <label class="check"><input id="topn" type="checkbox"> Top 100 only</label>
+      <select id="sort" aria-label="Sort">
+        <option value="rank">Sort: implied value</option>
+        <option value="tvl">Sort: TVL</option>
+        <option value="signal">Sort: launch signal</option>
+        <option value="change">Sort: 7d change</option>
+        <option value="age">Sort: age</option>
+      </select>
+    </div>
+    <p class="count" id="count"></p>
+    <div class="tablewrap"><table id="board">
+      <thead><tr>
+        <th>#</th><th>Protocol</th><th>Category</th><th>TVL</th><th>7d</th><th>Chains</th>
+        <th>Age</th><th>Implied value</th><th>Signal</th><th></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <article id="detail" class="detail" hidden></article>
+  </section>
+  <section id="view-live" hidden>
+    <p class="note">These protocols already record a token in the snapshot, so there is no launch to
+    price: the table shows the market's own figures — TVL and, where the snapshot records one, market
+    cap. They are ranked in board.json at those values and kept out of the radar on purpose: a radar
+    that prices what already trades would be a price list, not a radar.</p>
+    <div class="controls">
+      <input id="lq" type="search" placeholder="Search the trading set" aria-label="Search live">
+      <select id="lcat" aria-label="Live category"></select>
+    </div>
+    <p class="count" id="lcount"></p>
+    <div class="tablewrap"><table id="livetab">
+      <thead><tr><th>Protocol</th><th>Token</th><th>Category</th><th>TVL</th><th>Market cap</th><th>7d</th><th>Chains</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+  <section id="view-model" hidden></section>
+</main>
+<footer>
+  <p>Data: one frozen DefiLlama snapshot, fetched 2026-11-14; the page reads no network and recomputes
+  nothing from outside it. Implied values are a model's claim, stated with its factors on every row —
+  not a price prediction and not financial advice. Farm plans are written from each protocol's own
+  record: its category, its chains, capital scaled to its TVL and a hold window scaled to its age.</p>
+</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
